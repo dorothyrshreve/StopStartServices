@@ -6,7 +6,7 @@ import json
 
 all_service_dict = {}
 action_service_dict = {}
-ags_token = 'NO TOKEN YET'
+ags_token = ''
 service_action = 'Start'
 
 def msg(txt):
@@ -278,7 +278,6 @@ class StartStopServices:
         if (parameters[0].valueAsText == '' or # username
             parameters[1].valueAsText == '' or # password
             parameters[2].valueAsText == ''):   # server
-            parameters[3].value = 'NO TOKEN YET'
             return
 
         # do not generate tokens or service list unnecessarily
@@ -328,6 +327,14 @@ class StartStopServices:
     def updateMessages(self, parameters):
         """Modify the messages created by internal validation for each tool
         parameter. This method is called after internal validation."""
+
+        global ags_token
+
+        if parameters[3].valueAsText == 'NO TOKEN YET':
+            parameters[0].setErrorMessage("Enter server admin account username")
+            parameters[1].setErrorMessage("Enter server admin account password")
+            parameters[2].setErrorMessage("Enter valid server url")
+
 
         return
 
