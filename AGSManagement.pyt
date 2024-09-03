@@ -108,7 +108,7 @@ def generateServicesList(full_server, ags_token):
         folder_dict = findServicesInFolder(folderBody)
         if folder_dict: this_service_dict.update(folder_dict)
         if ct < 0: break
-        else: ct -= 1
+        # else: ct -= 1
 
     return this_service_dict
 
